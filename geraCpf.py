@@ -20,14 +20,26 @@ def geraVerificador(cpf,aux):
 	else:
 		cpf.append(11 - (total%11))
 	return cpf
-#def geraMascara(cpf):
+def geraMascara(cpf):
+	x = 0
+	cpfaux = ''
+	while x < len(cpf):
+		cpfaux = cpfaux+cpf[x]
+		if x == 2 or x == 5:
+			cpfaux +='.'
+		elif x == 8:
+			cpfaux += '-'
+
+		x +=1
+	return cpfaux
 
 def geraCPF():
 	num = geraNumeros()
 	temp = geraVerificador(num,10)
 	temp = geraVerificador(temp,11)
 	cpf =  "".join(str(i) for i in temp)
-	return cpf	
+	
+	return geraMascara(cpf)
 
 
 print(geraCPF())	
